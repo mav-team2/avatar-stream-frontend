@@ -1,5 +1,12 @@
 services:
   web:
+    develop:
+      watch:
+      - path: ./src
+        target: /app/src
+        action: sync     # 소스만 동기화 (재빌드 없음)
+      - path: package.json
+        action: rebuild  # 의존성 바뀌면 웹만 재빌드
     build:
       context: .
     image: video-test-web:latest
