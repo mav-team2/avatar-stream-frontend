@@ -1,0 +1,10 @@
+FROM --platform=linux/arm64 alpine:latest
+RUN apk add --no-cache ffmpeg
+
+WORKDIR /app
+
+COPY dido_sunny.jpg .
+COPY ffmpeg-streaming.sh .
+
+RUN chmod +x ffmpeg-streaming.sh
+CMD ["./ffmpeg-streaming.sh"]
