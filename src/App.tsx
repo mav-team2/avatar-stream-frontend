@@ -1,10 +1,10 @@
-import React from 'react';
-import VideoStreamPage from './pages/VideoStreamPage';
+import React from "react";
+import WebRTCStreamPage from "./pages/WebRTCStreamPage";
 
 function App() {
   return (
     <div>
-      <VideoStreamPage />
+      <WebRTCStreamPage />
     </div>
   );
 }
