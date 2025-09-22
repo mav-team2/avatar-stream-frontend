@@ -1,38 +1,38 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import WebRTCPlayer from "../components/WebRTCPlayer";
+import { AvatarCanvas } from "../components/AvatarCanvas";
 
 const WebRTCStreamPage: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      <WebRTCPlayer />
-      <canvas
-        ref={canvasRef}
+    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+      {/* WebRTC 비디오 배경 */}
+      <div
         style={{
-          position: 'fixed',
+          position: "absolute",
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-          zIndex: 1
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+        }}
+      >
+        <WebRTCPlayer />
+      </div>
+
+      {/* 아바타 오버레이 */}
+      <AvatarCanvas
+        avatarId={1}
+        initialX={400}
+        initialY={300}
+        moveSpeed={200}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          pointerEvents: "auto",
+          zIndex: 10,
         }}
       />
     </div>

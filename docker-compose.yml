@@ -17,6 +17,7 @@ services:
       - "3000:3000"
     depends_on:
       - mediamtx
+      - redis
     restart: unless-stopped
 
   streaming:
@@ -46,6 +47,13 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+
+  redis:
+    image: redis:latest
+    container_name: video-test-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
 
 networks:
   default:
